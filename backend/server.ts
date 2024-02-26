@@ -15,24 +15,31 @@ app.use(cookieParser());
 type BreedInfo = {
   id: string;
   name: string;
+  description: string;
+  origin: string;
+  temperament: string;
 };
 
 app.get("/breeds", async (_, res: Response) => {
+  const URL = CAT_API_URL + "/breeds";
+
   try {
-    const URL = CAT_API_URL + "/breeds";
     const breedsRequest = await fetch(URL, {
       method: "GET",
     });
 
     if (!breedsRequest.ok) {
       console.error("Fetch failed!");
-      return res.status(500).send({ message: "Fetch Failed!" });
+      return res.status(500).send({ message: "Apologies but we could not load new cats for you at this time! Miau!" });
     } else {
       const breedsData = await breedsRequest.json() as BreedInfo[];
       const breeds = breedsData.map((breed) => {
         return {
           id: breed.id,
           name: breed.name,
+          description: breed.description,
+          origin: breed.origin,
+          temperament: breed.temperament,
         };
       });
 
