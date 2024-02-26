@@ -1,0 +1,7 @@
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "compilerOptions": {
+    "preserveConstEnums": true
+  },
+  "files": ["server.ts", "modules.d.ts"],
+}
