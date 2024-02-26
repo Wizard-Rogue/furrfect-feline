@@ -20,6 +20,19 @@ type BreedInfo = {
   temperament: string;
 };
 
+type CatParams = {
+  limit: string;
+  page: string;
+  breed_ids?: string;
+  api_key: string;
+};
+
+type CatsInfo = {
+  id: string;
+  url: string;
+  breeds?: BreedInfo[];
+};
+
 app.get("/breeds", async (_, res: Response) => {
   const URL = CAT_API_URL + "/breeds";
 
@@ -44,6 +57,50 @@ app.get("/breeds", async (_, res: Response) => {
       });
 
       return res.status(200).send(breeds);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error });
+  }
+});
+
+app.get("/cats", async (req: Request, res: Response) => {
+  const URL = CAT_API_URL + "/images/search?";
+  const { limit = 10, page = 0, breedIds } = req.query;
+  const params = {
+    limit,
+    page,
+    api_key: CAT_API_KEY,
+    ...(breedIds?.length && { breed_ids: breedIds }),
+  } as CatParams;
+
+  try {
+    const catsRequest = await fetch(URL + new URLSearchParams(params), {
+      method: "GET",
+    });
+
+    if (!catsRequest.ok) {
+      console.error("Fetch failed!");
+      return res.status(500).send({ message: "Apologies but we could not load new cats for you at this time! Miau!" });
+    } else {
+      const catsData = await catsRequest.json() as CatsInfo[];
+      const cats = catsData.map((cat) => {
+        return {
+          id: cat.id,
+          url: cat.url,
+          breeds: cat.breeds?.map((breed) => {
+            return {
+              id: breed.id,
+              name: breed.name,
+              description: breed.description,
+              origin: breed.origin,
+              temperament: breed.temperament,
+            }
+          }),
+        };
+      });
+
+      return res.status(200).send(cats);
     }
   } catch (error) {
     console.error(error);
