@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv/config';
 
+import { BreedInfo, CatParams, CatsInfo } from './types';
+
 const app = express();
 const { CAT_API_KEY, CAT_API_URL, PORT = 3000 } = process.env;
 
@@ -11,27 +13,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-type BreedInfo = {
-  id: string;
-  name: string;
-  description: string;
-  origin: string;
-  temperament: string;
-};
-
-type CatParams = {
-  limit: string;
-  page: string;
-  breed_ids?: string;
-  api_key: string;
-};
-
-type CatsInfo = {
-  id: string;
-  url: string;
-  breeds?: BreedInfo[];
-};
 
 app.get("/breeds", async (_, res: Response) => {
   const URL = CAT_API_URL + "/breeds";
