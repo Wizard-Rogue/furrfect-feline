@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { Image } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
 
 const CardWrapper = styled.li`
+  display: flex;
+  flex-flow: column nowrap;
   height: 40vh;
   flex-grow: 1;
   margin: 2vmin;
@@ -15,4 +17,9 @@ const ImageLink = styled(Image)`
   border-radius: 1vmin;
 `;
 
-export { CardWrapper, ImageLink };
+const ButtonWrapper = styled.div`
+  padding: 0.5em;
+  text-align: center;
+`;
+
+export { CardWrapper, ImageLink, ButtonWrapper };

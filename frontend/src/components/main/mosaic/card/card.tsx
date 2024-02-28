@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { CardWrapper, ImageLink } from './card.styles';
+import Button from 'react-bootstrap/Button';
+import { CardWrapper, ImageLink, ButtonWrapper } from './card.styles';
 
 type CardProps = {
   id: string;
@@ -12,9 +12,10 @@ function Card(props: CardProps) {
 
   return (
     <CardWrapper>
-      <Link to={image}>
-        <ImageLink src={image} />
-      </Link>
+      <ImageLink src={image} />
+      <ButtonWrapper>
+        <Button variant='primary'>View Details</Button>
+      </ButtonWrapper>
     </CardWrapper>
   )
 };
