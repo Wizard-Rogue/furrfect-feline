@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import App from './components/main';
+import breedsLoader from './components/main/breedsLoader';
 import ErrorPage from './error-page';
 
 const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       path="/"
       element={<App />}
       errorElement={<ErrorPage />}
+      loader={breedsLoader}
     >
     </Route>
   )
