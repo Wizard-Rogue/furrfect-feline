@@ -1,5 +1,10 @@
 import { CatsInfo } from "../../types/shared";
 
+/**
+ * This is the loader responsible for GET /cats
+ * @returns catsData<catInfo[]>
+ * @throws error depending on the error encountered
+ */
 async function loadCats () {
   try {
     const catsRequest = await fetch("/cats", {
