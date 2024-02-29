@@ -7,6 +7,7 @@ const CardWrapper = styled.li`
   height: 40vh;
   flex-grow: 1;
   margin: 2vmin;
+  padding: 0.5rem;
 `;
 
 const ImageLink = styled(Image)`

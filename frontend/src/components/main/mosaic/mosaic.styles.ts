@@ -19,7 +19,21 @@ const Wrapper = styled.div`
   }
 `;
 
+const StickyBottomWrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  z-index: 20;
+  bottom: 0;
+  background: white;
+  border-top: 1px solid silver;
+`;
+
 export {
   MosaicList,
   Wrapper,
+  StickyBottomWrapper,
 };
