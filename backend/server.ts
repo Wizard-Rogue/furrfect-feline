@@ -89,6 +89,41 @@ app.get("/cats", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/cats/:id", async (req: Request, res: Response) => {
+  const URL = CAT_API_URL + "/images/" + req.params.id;
+  
+  try {
+    const catRequest = await fetch(URL, {
+      method: "GET",
+    });
+
+    if (!catRequest.ok) {
+      console.error("Fetch failed!");
+      return res.status(500).send({ message: "Apologies but we could not load new cats for you at this time! Miau!" });
+    } else {
+      const catData = await catRequest.json() as CatsInfo;
+      const cat = {
+        id: catData.id,
+        url: catData.url,
+        breeds: catData.breeds?.map((breed) => {
+          return {
+            id: breed.id,
+            name: breed.name,
+            description: breed.description,
+            origin: breed.origin,
+            temperament: breed.temperament,
+          }
+        }),
+      };
+
+      return res.status(200).send(cat);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error });
+  }
+});
+
 app.listen(PORT, () => {
   console.log("Server is up on port", PORT);
 });
