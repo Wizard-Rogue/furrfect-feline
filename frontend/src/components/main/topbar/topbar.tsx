@@ -4,15 +4,21 @@ import Form from 'react-bootstrap/Form';
 import SelectionContext, { SelectionContextType } from '../../../contexts/selectionContext';
 import Wrapper from './topbar.styles';
 import { BreedInfo } from '../../../types/shared';
+import catsLoader from '../catsLoader';
 
 function Topbar() {
   const { breedsData } = useLoaderData() as { breedsData: BreedInfo[] };
-  const { setSelectedBreed } = useContext(SelectionContext) as SelectionContextType;
+  const { setSelectedBreed, setCatsInfo } = useContext(SelectionContext) as SelectionContextType;
 
-  function updateSelectedBreed (event: React.ChangeEvent<HTMLSelectElement>) {
+  /**
+   * Function to update information on the context when the breed selection changes
+   */
+  async function updateSelectedBreed (event: React.ChangeEvent<HTMLSelectElement>) {
     const { target: { value } } = event;
-    setSelectedBreed(value)
-  }
+    setSelectedBreed(value);
+    const catsInfo = await catsLoader();
+    setCatsInfo([ ...catsInfo ]);
+  };
 
   return (
     <Wrapper>
