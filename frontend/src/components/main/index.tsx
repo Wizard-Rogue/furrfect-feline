@@ -3,16 +3,16 @@ import { Outlet } from 'react-router-dom';
 import SelectionContext from '../../contexts/selectionContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { CatsInfo } from '../../types/shared';
-import catsLoader from './catsLoader';
+import { CatsInfo, PageMetadata } from '../../types/shared';
+import loadCats from './catsLoader';
 
 function App() {
   const [ selectedBreed, setSelectedBreed ] = useState<string>('');
-  const [ selectedCat, setSelectedCat ] = useState<string>('');
   const [ catsInfo, setCatsInfo ] = useState<CatsInfo[]>([]);
+  const [ pageMetadata, setPageMetadata ] = useState<PageMetadata>({ page: 0, disableLoadMore: false });
 
   async function loadFirstCats () {
-    const firstCatsFetch = await catsLoader();
+    const firstCatsFetch = await loadCats();
     setCatsInfo(firstCatsFetch);
   }
 
@@ -21,7 +21,16 @@ function App() {
   }, []);
 
   return (
-    <SelectionContext.Provider value={{ selectedBreed, setSelectedBreed, selectedCat, setSelectedCat, catsInfo, setCatsInfo }}>
+    <SelectionContext.Provider value={
+      {
+        selectedBreed,
+        setSelectedBreed,
+        catsInfo,
+        setCatsInfo,
+        pageMetadata,
+        setPageMetadata,
+      }
+    }>
       <Outlet />  
     </SelectionContext.Provider>
   );
