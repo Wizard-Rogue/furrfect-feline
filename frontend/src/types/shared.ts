@@ -6,21 +6,19 @@ type BreedInfo = {
   temperament: string;
 };
 
-type CatParams = {
-  limit: string;
-  page: string;
-  breed_ids?: string;
-  api_key: string;
-};
-
 type CatsInfo = {
   id: string;
   url: string;
   breeds?: BreedInfo[];
 };
 
+type PageMetadata = {
+  page: number;
+  disableLoadMore: boolean;
+};
+
 export type {
   BreedInfo,
-  CatParams,
   CatsInfo,
+  PageMetadata,
 };
