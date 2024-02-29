@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import {
   CatViewWrapper,
@@ -7,28 +7,24 @@ import {
   TextRow,
   NavigationContainer,
 } from "./index.styles";
-import { CatsInfo } from "../../types/shared";
 import BreedSection from "./breedSection/breedSection";
-
-type CatPageProps = {
-  CatsInfo: CatsInfo;
-};
+import { CatsInfo } from "../../types/shared";
 
 function Pluralize(value: number) {
   return value > 1 ? 's' : '';
 }
 
-function CatPage(props: CatPageProps) {
-  const { CatsInfo: { url, breeds } } = props;
+function CatPage() {
+  const { catData: { url, breeds } } = useLoaderData() as { catData: CatsInfo };
   const navigate = useNavigate();
 
   return (
     <CatViewWrapper>
       <NavigationContainer>
-        <Button variant="primary" onClick={() => navigate(-1)} />
+        <Button variant="primary" onClick={() => navigate(-1)}>Go Back</Button>
       </NavigationContainer>
       <CatImage src={url} />
-      {breeds?.length === 0 ? (
+      {!breeds || breeds?.length === 0 ? (
         <TextRow>
           <h1>There is no breed data available for this cat! Sorry!</h1>
         </TextRow>

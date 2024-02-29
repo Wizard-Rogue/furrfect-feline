@@ -13,6 +13,7 @@ const CatImage = styled(Image)`
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+  padding: 1rem;
 `;
 
 const TextRow = styled.div`
@@ -20,11 +21,11 @@ const TextRow = styled.div`
   flex-flow: row wrap;
 `;
 
-const TextLabel = styled.p`
+const TextLabel = styled.div`
   flex: 0 1 6rem;
 `;
 
-const TextContent = styled.p`
+const TextContent = styled.div`
   flex: 2;
 `;
 
@@ -32,6 +33,7 @@ const NavigationContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;
+  padding: 1rem;
 `;
 
 export {
