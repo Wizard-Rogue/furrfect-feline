@@ -11,6 +11,7 @@ type CatParams = {
   page: string;
   breed_ids?: string;
   api_key: string;
+  order: string;
 };
 
 type CatsInfo = {

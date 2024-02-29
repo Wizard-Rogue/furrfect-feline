@@ -49,6 +49,7 @@ app.get("/cats", async (req: Request, res: Response) => {
   const URL = CAT_API_URL + "/images/search?";
   const { limit = 10, page = 0, breedIds } = req.query;
   const params = {
+    order: "ASC",
     limit,
     page,
     api_key: CAT_API_KEY,
@@ -65,6 +66,9 @@ app.get("/cats", async (req: Request, res: Response) => {
       return res.status(500).send({ message: "Apologies but we could not load new cats for you at this time! Miau!" });
     } else {
       const catsData = await catsRequest.json() as CatsInfo[];
+
+      if (!catsData || catsData.length === 0) return res.status(204).send();
+
       const cats = catsData.map((cat) => {
         return {
           id: cat.id,
