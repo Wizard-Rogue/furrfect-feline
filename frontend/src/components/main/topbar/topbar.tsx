@@ -8,7 +8,7 @@ import catsLoader from '../catsLoader';
 
 function Topbar() {
   const { breedsData } = useLoaderData() as { breedsData: BreedInfo[] };
-  const { setSelectedBreed, setCatsInfo } = useContext(SelectionContext) as SelectionContextType;
+  const { setSelectedBreed, setCatsInfo, selectedBreed } = useContext(SelectionContext) as SelectionContextType;
 
   /**
    * Function to update information on the context when the breed selection changes
@@ -23,7 +23,7 @@ function Topbar() {
   return (
     <Wrapper>
       <h3>Select a breed here:</h3>
-      <Form.Select onChange={(event) => updateSelectedBreed(event)}>
+      <Form.Select onChange={(event) => updateSelectedBreed(event)} defaultValue={selectedBreed}>
         <option value=""></option>
         {breedsData.map((breed) => {
           return (
