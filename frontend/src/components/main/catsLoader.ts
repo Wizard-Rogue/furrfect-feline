@@ -5,9 +5,14 @@ import { CatsInfo } from "../../types/shared";
  * @returns catsData<catInfo[]>
  * @throws error depending on the error encountered
  */
-async function loadCats () {
+async function loadCats (breed: string = '', page: number = 0) {
+  const params = {
+    page: page.toString(),
+    breedIds: breed,
+  };
+
   try {
-    const catsRequest = await fetch("/cats", {
+    const catsRequest = await fetch("/cats?" + new URLSearchParams(params), {
       method: "GET",
     });
 
@@ -21,6 +26,10 @@ async function loadCats () {
   } catch (error) {
     throw error;
   }
+}
+
+export function catsLoader () {
+  return loadCats();
 }
 
 export default loadCats;

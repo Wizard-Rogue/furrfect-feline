@@ -4,11 +4,11 @@ import Form from 'react-bootstrap/Form';
 import SelectionContext, { SelectionContextType } from '../../../contexts/selectionContext';
 import Wrapper from './topbar.styles';
 import { BreedInfo } from '../../../types/shared';
-import catsLoader from '../catsLoader';
+import loadCats from '../catsLoader';
 
 function Topbar() {
   const { breedsData } = useLoaderData() as { breedsData: BreedInfo[] };
-  const { setSelectedBreed, setCatsInfo, selectedBreed } = useContext(SelectionContext) as SelectionContextType;
+  const { setSelectedBreed, setCatsInfo, selectedBreed, setPageMetadata } = useContext(SelectionContext) as SelectionContextType;
 
   /**
    * Function to update information on the context when the breed selection changes
@@ -16,8 +16,9 @@ function Topbar() {
   async function updateSelectedBreed (event: React.ChangeEvent<HTMLSelectElement>) {
     const { target: { value } } = event;
     setSelectedBreed(value);
-    const catsInfo = await catsLoader();
+    const catsInfo = await loadCats(value);
     setCatsInfo([ ...catsInfo ]);
+    setPageMetadata({ page: 0, disableLoadMore: !catsInfo || catsInfo.length !== 10 });
   };
 
   return (

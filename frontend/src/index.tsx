@@ -12,6 +12,7 @@ import ErrorPage from './error-page';
 import CatPage from './components/cats';
 import Mosaic from './components/main/mosaic/mosaic';
 import catLoader from './components/cats/catLoader';
+import { catsLoader } from './components/main/catsLoader';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
         path="/"
         element={<App />}
         errorElement={<ErrorPage />}
+        loader={catsLoader}
       >
         <Route errorElement={<ErrorPage />} >
           <Route index element={<Mosaic />} loader={breedsLoader} />
