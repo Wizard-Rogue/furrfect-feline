@@ -9,16 +9,19 @@ import {
 import App from './components/main';
 import breedsLoader from './components/main/breedsLoader';
 import ErrorPage from './error-page';
+import Mosaic from './components/main/mosaic/mosaic';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route
-      path="/"
-      element={<App />}
-      errorElement={<ErrorPage />}
-      loader={breedsLoader}
-    >
-    </Route>
+      <Route
+        path="/"
+        element={<App />}
+        errorElement={<ErrorPage />}
+      >
+        <Route errorElement={<ErrorPage />} >
+          <Route index element={<Mosaic />} loader={breedsLoader} />
+        </Route>
+      </Route>
   )
 );
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SelectionContext, { SelectionContextType } from '../../../contexts/selectionContext';
-import MosaicList from './mosaic.styles';
+import { MosaicList, Wrapper } from './mosaic.styles';
 import Card from './card/card';
 import { CatsInfo } from '../../../types/shared';
+import Topbar from '../topbar/topbar';
 
 function Mosaic() {
   const { selectedBreed } = useContext(SelectionContext) as SelectionContextType;
@@ -31,17 +32,20 @@ function Mosaic() {
   }, [selectedBreed]);
 
   return (
-    <MosaicList>
-      {catsInfo.map((catInfo) => {
-        return (
-          <Card
-            key={catInfo.id}
-            id={catInfo.id}
-            image={catInfo.url}
-          />
-        )
-      })}
-    </MosaicList>
+    <Wrapper>
+      <Topbar />
+      <MosaicList>
+        {catsInfo.map((catInfo) => {
+          return (
+            <Card
+              key={catInfo.id}
+              id={catInfo.id}
+              image={catInfo.url}
+            />
+          )
+        })}
+      </MosaicList>
+    </Wrapper>
   )
 };
 

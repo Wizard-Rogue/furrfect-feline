@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Wrapper from './index.styles';
-import Topbar from './topbar/topbar';
-import Mosaic from './mosaic/mosaic';
+import { Outlet } from 'react-router-dom';
 import SelectionContext from '../../contexts/selectionContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -11,10 +9,7 @@ function App() {
 
   return (
     <SelectionContext.Provider value={{ selectedBreed, setSelectedBreed }}>
-      <Wrapper>
-        <Topbar></Topbar>
-        <Mosaic></Mosaic>
-      </Wrapper>
+      <Outlet />  
     </SelectionContext.Provider>
   );
 }

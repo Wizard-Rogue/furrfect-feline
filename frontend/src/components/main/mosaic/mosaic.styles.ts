@@ -7,4 +7,19 @@ const MosaicList = styled.ul`
   list-style: none;
 `;
 
-export default MosaicList;
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+
+  > * {
+    padding: 1rem;
+    flex: 1 100%;
+  }
+`;
+
+export {
+  MosaicList,
+  Wrapper,
+};
