@@ -1,5 +1,6 @@
 import type { LoaderFunction } from "react-router-dom";
 import { CatsInfo } from "../../types/shared";
+import fetchError from "../error/error";
 
 /**
  * This is the loader responsible for GET /cats/:id
@@ -14,11 +15,11 @@ const catLoader: LoaderFunction = async ({ params }) => {
     });
 
     if (!catRequest.ok) {
-      throw new Error("Fetch failed!");
-    } else {
-      const catData = await catRequest.json() as CatsInfo;
-      return { catData };
+      throw fetchError;
     }
+    
+    const catData = await catRequest.json() as CatsInfo;
+    return { catData };
   } catch (error) {
     throw error;
   }

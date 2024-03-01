@@ -1,4 +1,5 @@
 import { CatsInfo } from "../../types/shared";
+import fetchError from "../error/error";
 
 /**
  * This is the loader responsible for GET /cats
@@ -17,12 +18,12 @@ async function loadCats (breed: string = '', page: number = 0) {
     });
 
     if (!catsRequest.ok) {
-      console.error("Fetch failed!");
-      throw new Error("Apologies but we could not load new cats for you at this time! Miau!");
-    } else {
-      const catsData = await catsRequest.json() as CatsInfo[];
-      return catsData;
+      throw fetchError;
     }
+
+    if (catsRequest.status === 204) return []; // return empty when a 204 is received
+    const catsData = await catsRequest.json() as CatsInfo[];
+    return catsData;
   } catch (error) {
     throw error;
   }

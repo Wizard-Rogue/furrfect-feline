@@ -1,4 +1,5 @@
 import { BreedInfo } from '../../types/shared';
+import fetchError from '../error/error';
 
 /**
  * This is the loader responsible for GET /breeds
@@ -11,11 +12,11 @@ async function breedsLoader() {
     });
 
     if (!breedsRequest.ok) {
-      throw new Error("Fetch failed!");
-    } else {
-      const breedsData = await breedsRequest.json() as BreedInfo[];
-      return { breedsData };
+      throw fetchError;
     }
+
+    const breedsData = await breedsRequest.json() as BreedInfo[];
+    return { breedsData };
   } catch (error) {
     throw error;
   }

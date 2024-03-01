@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import App from './components/main';
 import breedsLoader from './components/main/breedsLoader';
-import ErrorPage from './error-page';
+import ErrorPage from './components/error/error-page';
 import CatPage from './components/cats';
 import Mosaic from './components/main/mosaic/mosaic';
 import catLoader from './components/cats/catLoader';
