@@ -24,13 +24,13 @@ function CatPage() {
         <Button variant="primary" onClick={() => navigate(-1)}>Go Back</Button>
       </NavigationContainer>
       <CatImage src={url} />
-      {!breeds || breeds?.length === 0 ? (
-        <TextRow>
-          <h1>There is no breed data available for this cat! Sorry!</h1>
-        </TextRow>
-      ) : (
-        <h1>This cat has {breeds?.length} breed{Pluralize(breeds?.length || 0)}!</h1>
-      )}
+      <TextRow>
+        {!breeds || breeds?.length === 0 ? (
+            <h1>There is no breed data available for this cat! Sorry!</h1>
+        ) : (
+          <h1>This cat has {breeds?.length} breed{Pluralize(breeds?.length || 0)}!</h1>
+        )}
+      </TextRow>
       {breeds?.map((breed) => {
         return (
           <BreedSection breed={breed} key={breed.id} />

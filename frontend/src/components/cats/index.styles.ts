@@ -4,13 +4,11 @@ import Image from 'react-bootstrap/Image';
 const CatViewWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  text-align: center;
   justify-content: center;
-  align-items: center;
 `;
 
 const CatImage = styled(Image)`
-  max-height: 100%;
+  max-height: 40rem;
   max-width: 100%;
   object-fit: contain;
   padding: 1rem;
@@ -18,11 +16,13 @@ const CatImage = styled(Image)`
 
 const TextRow = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0 3rem;
 `;
 
 const TextLabel = styled.div`
-  flex: 0 1 6rem;
+  flex: 0 1 10rem;
 `;
 
 const TextContent = styled.div`
