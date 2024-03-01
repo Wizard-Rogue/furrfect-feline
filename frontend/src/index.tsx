@@ -16,22 +16,22 @@ import { catsLoader } from './components/main/catsLoader';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-      <Route
-        path="/"
-        element={<App />}
-        errorElement={<ErrorPage />}
-        loader={catsLoader}
-      >
-        <Route errorElement={<ErrorPage />} >
-          <Route index element={<Mosaic />} loader={breedsLoader} />
-          <Route
-            path="/cats/:id"
-            element={<CatPage />}
-            loader={catLoader}
-          >
-          </Route>
+    <Route
+      path="/"
+      element={<App />}
+      errorElement={<ErrorPage />}
+      loader={catsLoader}
+    >
+      <Route errorElement={<ErrorPage />} >
+        <Route index element={<Mosaic />} loader={breedsLoader} />
+        <Route
+          path="/cats/:id"
+          element={<CatPage />}
+          loader={catLoader}
+        >
         </Route>
       </Route>
+    </Route>
   )
 );
 
