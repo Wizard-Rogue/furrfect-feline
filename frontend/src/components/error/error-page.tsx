@@ -1,4 +1,5 @@
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import Alert from 'react-bootstrap/Alert';
 
 function ErrorPage() {
   const error = useRouteError();
@@ -7,13 +8,10 @@ function ErrorPage() {
   console.error(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{ message }</i>
-      </p>
-    </div>
+    <Alert variant="danger" dismissible>
+      <Alert.Heading>Oops! An unexpected error has occurred.</Alert.Heading>
+      <p>{message}</p>
+    </Alert>
   );
 }
 
