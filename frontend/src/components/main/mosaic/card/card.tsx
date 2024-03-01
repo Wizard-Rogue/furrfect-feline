@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { CardWrapper, ImageLink, ButtonWrapper } from './card.styles';
+import { CardWrapper, MosaicCard } from './card.styles';
 import { useNavigate } from 'react-router-dom';
 
 type CardProps = {
@@ -19,10 +19,12 @@ function Card(props: CardProps) {
 
   return (
     <CardWrapper>
-      <ImageLink src={image} />
-      <ButtonWrapper>
-        <Button variant='primary' onClick={loadCat}>View Details</Button>
-      </ButtonWrapper>
+      <MosaicCard>
+        <MosaicCard.Img src={image} />
+        <MosaicCard.Body>
+          <Button variant="primary" onClick={loadCat}>View Details</Button>
+        </MosaicCard.Body>
+      </MosaicCard>
     </CardWrapper>
   )
 };
