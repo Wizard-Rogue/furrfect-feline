@@ -4,7 +4,7 @@ import SelectionContext from '../../contexts/selectionContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { CatsInfo, PageMetadata } from '../../types/shared';
-import loadCats from './catsLoader';
+import loadCats from '../../loaders/catsLoader';
 
 function App() {
   const [ selectedBreed, setSelectedBreed ] = useState<string>('');

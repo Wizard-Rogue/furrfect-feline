@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import SelectionContext, { SelectionContextType } from '../../../contexts/selectionContext';
 import Wrapper from './topbar.styles';
 import { BreedInfo } from '../../../types/shared';
-import loadCats from '../catsLoader';
+import loadCats from '../../../loaders/catsLoader';
 
 function Topbar() {
   const { breedsData } = useLoaderData() as { breedsData: BreedInfo[] };

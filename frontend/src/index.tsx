@@ -7,12 +7,12 @@ import {
   Route,
 } from "react-router-dom";
 import App from './components/main';
-import breedsLoader from './components/main/breedsLoader';
+import breedsLoader from './loaders/breedsLoader';
 import ErrorPage from './components/error/error-page';
 import CatPage from './components/cats';
 import Mosaic from './components/main/mosaic/mosaic';
-import catLoader from './components/cats/catLoader';
-import { catsLoader } from './components/main/catsLoader';
+import catLoader from './loaders/catLoader';
+import { catsLoader } from './loaders/catsLoader';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

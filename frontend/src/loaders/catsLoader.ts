@@ -1,5 +1,5 @@
-import { CatsInfo } from "../../types/shared";
-import fetchError from "../error/error";
+import { CatsInfo } from "../types/shared";
+import fetchError from "../components/error/error";
 
 /**
  * This is the loader responsible for GET /cats
